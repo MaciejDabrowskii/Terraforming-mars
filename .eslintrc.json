@@ -1,0 +1,67 @@
+{
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es2021": true
+    },
+    "extends": ["plugin:react/recommended", "airbnb"],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": "latest"
+    },
+    "plugins": ["react"],
+    "rules": {
+      "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 1 }],
+      "lines-between-class-members": ["error", "always"],
+      "no-console": "off",
+      "quotes": ["error", "double"],
+      "max-len": ["error", { "ignoreComments": true, "ignoreUrls": true }],
+      "brace-style": ["error", "allman"],
+      "react/jsx-filename-extension": [0],
+      "react/prefer-stateless-function": [0],
+      "no-useless-constructor": [0],
+      "react/jsx-uses-react": "error",
+      "react/jsx-uses-vars": "error",
+      "react/prop-types": 0,
+      "padding-line-between-statements": [
+        "error",
+        {
+          "blankLine": "always",
+          "prev": "*",
+          "next": [
+            "block",
+            "block-like",
+            "cjs-export",
+            "class",
+            "const",
+            "export",
+            "import",
+            "let",
+            "var"
+          ]
+        },
+        {
+          "blankLine": "always",
+          "prev": [
+            "block",
+            "block-like",
+            "cjs-export",
+            "class",
+            "const",
+            "export",
+            "import",
+            "let",
+            "var"
+          ],
+          "next": "*"
+        },
+        {
+          "blankLine": "any",
+          "prev": ["export", "import"],
+          "next": ["export", "import"]
+        }
+      ]
+    }
+  }
