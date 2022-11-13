@@ -1,29 +1,63 @@
+/* eslint-disable max-len */
+/* eslint-disable consistent-return */
 import React, { useEffect } from "react";
-import { firebaseMethods } from "../../Contexts/Firebase-context";
+import { onSnapshot, doc, collection } from "firebase/firestore";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
+import Player from "../Player/Player";
+import GenerationBar from "../Generation-bar/Generation-bar";
+import { database } from "../../Firebase/Firebase-init";
 
 function Game()
 {
-  const { addData } = firebaseMethods();
+  const {
+    gameState, gameID, addGeneration, addProductionToValue, setGameState,
+  } = GlobalStatesMethods();
 
-  const { gameState } = GlobalStatesMethods();
+  const { players } = gameState;
 
-  const newGame = async () =>
+  const endGeneration = () =>
   {
-    await addData(gameState)
-      .then((docRef) => console.log(docRef))
-      .catch((err) => console.log(err));
-    // await checkIfDocumentExists("fffff")
-    //   .then((res) => console.log(res));
+    players.forEach((player) =>
+    {
+      const { name } = player;
+
+      const resources = Object.keys(player.resources);
+
+      resources.forEach((resource) => addProductionToValue(name, resource));
+    });
+    addGeneration();
   };
 
   useEffect(() =>
   {
-    if (gameState) return newGame;
-  }, []);
+    const unsubscribe = onSnapshot(doc(database, "TerraformingMars", gameID), (data) => setGameState(data.data()));
 
+    return () =>
+    {
+      unsubscribe();
+    };
+  }, []);
   return (
-    <div>Game</div>
+
+    <div className="game-container">
+      {gameID
+        ? (
+          <>
+            <GenerationBar barText={`Game id: ${gameID}`} />
+            <div className="Players-container">
+              {players.map((player) => (<Player player={player} />))}
+            </div>
+            <button
+              type="button"
+              onClick={() => endGeneration()}
+            >
+              End Generation
+            </button>
+          </>
+        )
+        : <p>waiting...</p>}
+
+    </div>
   );
 }
 

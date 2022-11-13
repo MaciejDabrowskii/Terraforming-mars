@@ -1,7 +1,11 @@
+/* eslint-disable max-len */
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import uniqid from "uniqid";
+import { useNavigate } from "react-router";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
+import { firebaseMethods } from "../../Contexts/Firebase-context";
 
 function NewGAme()
 {
@@ -9,11 +13,15 @@ function NewGAme()
 
   const [newGameAlert, setNewGameAlert] = useState(false);
 
+  const navigateTo = useNavigate();
+
   const textField = useRef();
 
   const {
-    players, gameState, addPlayer, removePlayer, setupPlayer,
+    players, gameState, removePlayer, setupPlayer, gameID,
   } = GlobalStatesMethods();
+
+  const { updateDocument, addData } = firebaseMethods();
 
   const alertName = () =>
   {
@@ -30,12 +38,30 @@ function NewGAme()
   const onSubmit = (e) =>
   {
     e.preventDefault();
-    return players.some((player) => player === textField.current.value)
+    players.some((player) => player === textField.current.value)
       ? alertName(true)
-      : addPlayer(textField.current.value);
+      : setupPlayer(textField.current.value);
   };
 
-  const startGame = () => (players.length > 1 ? players.forEach(setupPlayer) : alertNewGame());
+  const newGame = async () =>
+  {
+    await updateDocument(gameID, gameState)
+      .then(navigateTo("/Game"))
+      .catch((err) => console.log(err));
+  };
+
+  const startGame = async () =>
+  {
+    gameState.players.length > 1 ? newGame() : alertNewGame();
+  };
+
+  useEffect(() =>
+  {
+    if (!gameID)
+    {
+      addData({});
+    }
+  }, []);
 
   return (
     <div className="New-game-container">
@@ -43,22 +69,22 @@ function NewGAme()
         <label>
           Enter player name:
           <input type="text" placeholder="Player Name" ref={textField} />
-          {nameAlert && <span>Player exist!, please enter alternative name or add number</span>}
         </label>
-        <button type="submit" onClick={onSubmit}>Add player</button>
+        <button type="submit" onClick={(e) => onSubmit(e)}>Add player</button>
+        {nameAlert && <span>Player exist!, please enter alternative name or add number</span>}
       </form>
       <div className="players-container">
         Players:
         <ul className="players-list">
-          {players.map((player) => (
+          {gameState.players.map((player) => (
             <ul key={uniqid()}>
+              {player.name}
               <button
                 type="button"
                 onClick={() => removePlayer(player)}
               >
                 x
               </button>
-              {player}
             </ul>
           ))}
         </ul>

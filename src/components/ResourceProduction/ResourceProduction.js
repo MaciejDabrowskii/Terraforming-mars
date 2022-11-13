@@ -1,7 +1,7 @@
 import React from "react";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
 
-function ResourceValue({ player, resource })
+function ResourceProduction({ player, resource })
 {
   const {
     addResourceProduction,
@@ -11,7 +11,7 @@ function ResourceValue({ player, resource })
   const { name, resources } = player;
 
   return (
-    <li>
+    <div className="resource-production">
       <button
         onClick={() => addResourceProduction(name, resource)}
         type="button"
@@ -25,8 +25,8 @@ function ResourceValue({ player, resource })
       >
         -
       </button>
-    </li>
+    </div>
   );
 }
 
-export default ResourceValue;
+export default ResourceProduction;

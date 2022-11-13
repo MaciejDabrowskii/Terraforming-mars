@@ -8,7 +8,7 @@ function ResourceValue({ player, resource })
   const { name, resources } = player;
 
   return (
-    <li>
+    <div>
       <button
         onClick={() => addResourceValue(name, resource)}
         type="button"
@@ -22,7 +22,7 @@ function ResourceValue({ player, resource })
       >
         -
       </button>
-    </li>
+    </div>
   );
 }
 

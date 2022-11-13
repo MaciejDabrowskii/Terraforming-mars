@@ -1,12 +1,39 @@
 import React from "react";
-import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
+import GenerationBar from "../Generation-bar/Generation-bar";
+import ResourceValue from "../ResourceValue/ResourceValue";
+import ResourceProduction from "../ResourceProduction/ResourceProduction";
 
-function Player()
+function Player({ player })
 {
-  const { gameState } = GlobalStatesMethods();
+  const { resources, name } = player;
 
   return (
-    <div>Player</div>
+    <div className="player-card">
+      <GenerationBar barText={name} />
+      <ul className="resources">
+        {Object.keys(resources)
+          .map((resource) => (
+            resource !== "Terraformation level"
+              ? (
+                <li key={resource}>
+                  {resource}
+                  {" "}
+                  Production:
+                  <ResourceProduction resource={resource} player={player} />
+                  Value:
+                  <ResourceValue resource={resource} player={player} />
+                </li>
+              )
+              : (
+                <li key={resource}>
+                  {resource}
+                  Value:
+                  <ResourceValue resource={resource} player={player} />
+                </li>
+              )
+          ))}
+      </ul>
+    </div>
   );
 }
 

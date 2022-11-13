@@ -3,18 +3,13 @@
 import React, { useContext } from "react";
 import {
   collection,
-  getDocs,
   addDoc,
-  query,
-  get,
   doc,
   setDoc,
   getDoc,
-  updateDoc,
-  arrayUnion,
 } from "firebase/firestore";
 import { GlobalStatesMethods } from "./Global-state-context";
-import { app, database } from "../Firebase/Firebase-init";
+import { database } from "../Firebase/Firebase-init";
 
 const FirebaseContext = React.createContext();
 
@@ -25,13 +20,13 @@ export function firebaseMethods()
 
 export function FirebaseProvider({ children })
 {
-  const { gameState, setGameID } = GlobalStatesMethods();
+  const { setGameID } = GlobalStatesMethods();
 
   const addData = async (object) =>
   {
     const docRef = await addDoc(collection(database, "TerraformingMars"), object);
 
-    setGameID(docRef.id);
+    await setGameID(docRef.id);
     console.log(docRef.id);
   };
 
@@ -58,6 +53,10 @@ export function FirebaseProvider({ children })
   //     return data;
   //   };
 
+  const updateDocument = async (documentID, data) =>
+  {
+    await setDoc(doc(database, "TerraformingMars", documentID), data);
+  };
   //   const updateHighscore = async (collectionName, documentName, data) =>
   //   {
   //     const levelRef = doc(database, collectionName, documentName);
@@ -97,6 +96,7 @@ export function FirebaseProvider({ children })
     addData,
     fetchDocumentData,
     checkIfDocumentExists,
+    updateDocument,
   };
 
   return (
