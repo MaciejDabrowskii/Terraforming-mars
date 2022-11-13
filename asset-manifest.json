@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.css": "/Terraforming-mars/static/css/main.31d6cfe0.css",
+    "main.js": "/Terraforming-mars/static/js/main.8a6810df.js",
+    "index.html": "/Terraforming-mars/index.html",
+    "main.8a6810df.js.map": "/Terraforming-mars/static/js/main.8a6810df.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31d6cfe0.css",
+    "static/js/main.8a6810df.js"
+  ]
+}
