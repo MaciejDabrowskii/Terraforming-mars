@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React from "react";
-import { BrowserRouter, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import JoinGame from "../Join-game/Join-game";
-import NewGAme from "../New-game/New-game";
 
 function HomePage()
 {

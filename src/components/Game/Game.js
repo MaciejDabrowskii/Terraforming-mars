@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 import React, { useEffect } from "react";
-import { onSnapshot, doc, collection } from "firebase/firestore";
+import { onSnapshot, doc } from "firebase/firestore";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
 import Player from "../Player/Player";
 import GenerationBar from "../Generation-bar/Generation-bar";
