@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useRef, useState } from "react";
-import uniqid from "uniqid";
 import { useNavigate } from "react-router";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
 import { firebaseMethods } from "../../Contexts/Firebase-context";
@@ -77,7 +76,7 @@ function NewGAme()
         Players:
         <ul className="players-list">
           {gameState.players.map((player) => (
-            <ul key={uniqid()}>
+            <ul key={player.name}>
               {player.name}
               <button
                 type="button"

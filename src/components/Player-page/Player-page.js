@@ -27,3 +27,21 @@ function PlayerPage({ player })
 }
 
 export default PlayerPage;
+// useEffect(() =>
+// {
+//   const unsubscribe = onSnapshot(doc(database, "TerraformingMars", gameID), (data) =>
+//   {
+//     setGameState({
+//       ...data.data(),
+//       players: data.data().players.map((dataPlayer) =>
+//       {
+//         const sortedRescources = Object.entries(dataPlayer.resources)
+//           .sort(([, a], [, b]) => a.index - b.index)
+//           .reduce((object, [key, value]) => ({ ...object, [key]: value }), {});
+
+//         console.log(sortedRescources);
+
+//         return { ...dataPlayer, resources: sortedRescources };
+//       }),
+//     });
+//   });

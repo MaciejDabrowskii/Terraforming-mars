@@ -7,31 +7,32 @@ function Player({ player })
 {
   const { resources, name } = player;
 
+  const resourcesKeys = Object.keys(resources)
+    .sort((a, b) => resources[a].index - resources[b].index);
+
   return (
     <div className="player-card">
       <GenerationBar barText={name} />
       <ul className="resources">
-        {Object.keys(resources)
-          .map((resource) => (
-            resource !== "Terraformation level"
-              ? (
-                <li key={resource}>
-                  {resource}
-                  {" "}
-                  Production:
-                  <ResourceProduction resource={resource} player={player} />
-                  Value:
-                  <ResourceValue resource={resource} player={player} />
-                </li>
-              )
-              : (
-                <li key={resource}>
-                  {resource}
-                  Value:
-                  <ResourceValue resource={resource} player={player} />
-                </li>
-              )
-          ))}
+        {resourcesKeys.map((resource) => (
+          resource !== "Terraformation level"
+            ? (
+              <li key={resources[resource].index}>
+                {resource}
+                Production:
+                <ResourceProduction resource={resource} player={player} />
+                Value:
+                <ResourceValue resource={resource} player={player} />
+              </li>
+            )
+            : (
+              <li key={resources[resource].index}>
+                {resource}
+                Value:
+                <ResourceValue resource={resource} player={player} />
+              </li>
+            )
+        ))}
       </ul>
     </div>
   );
