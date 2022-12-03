@@ -20,8 +20,8 @@ function Player({ player })
               <form className="player-resource" key={resources[resource].index}>
                 <fieldset className="player-resource-fieldset">
                   <legend className="player-resource-legend">{resource}</legend>
-                  <ResourceProduction resource={resource} player={player} />
                   <ResourceValue resource={resource} player={player} />
+                  <ResourceProduction resource={resource} player={player} />
                 </fieldset>
               </form>
             )

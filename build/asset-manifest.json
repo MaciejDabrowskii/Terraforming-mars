@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Terraforming-mars/static/css/main.82de2830.css",
-    "main.js": "/Terraforming-mars/static/js/main.e71cfa07.js",
+    "main.js": "/Terraforming-mars/static/js/main.47a138ee.js",
     "index.html": "/Terraforming-mars/index.html",
     "main.82de2830.css.map": "/Terraforming-mars/static/css/main.82de2830.css.map",
-    "main.e71cfa07.js.map": "/Terraforming-mars/static/js/main.e71cfa07.js.map"
+    "main.47a138ee.js.map": "/Terraforming-mars/static/js/main.47a138ee.js.map"
   },
   "entrypoints": [
     "static/css/main.82de2830.css",
-    "static/js/main.e71cfa07.js"
+    "static/js/main.47a138ee.js"
   ]
 }
