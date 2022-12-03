@@ -1,7 +1,3 @@
-.game-container {
-    position: relative;
-}
-
 .Players-container {
     display: flex;
     gap: 1rem;

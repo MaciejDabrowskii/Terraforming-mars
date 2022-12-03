@@ -13,7 +13,7 @@
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
+}
 
 .Toastify__toast-body > * {
   color: var(--white);
@@ -38,6 +38,7 @@ body {
     color: white;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+    position: relative;
 }
 
 @keyframes gradient {
