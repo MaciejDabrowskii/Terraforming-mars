@@ -49,10 +49,20 @@ function NewGAme()
 
     const { players } = gameState;
 
+    const clearTextfield = () =>
+    {
+      textField.current.value = "";
+    };
+
     const create = () =>
     {
-      setupPlayer(textField.current.value);
-      showToastSuccessMessage("Player created!");
+      textField.current.value !== ""
+        ? (
+          setupPlayer(textField.current.value),
+          showToastSuccessMessage("Player created!"),
+          clearTextfield()
+        )
+        : showToastErrorMessage("Name must be at least 1 character long!");
     };
 
     players.some((player) => player.name === textField.current.value)
@@ -98,30 +108,54 @@ function NewGAme()
         pauseOnHover
         theme="colored"
       />
-      <form>
-        <label>
-          Enter player name:
-          <input type="text" placeholder="Player Name" ref={textField} />
-        </label>
-        <button type="submit" onClick={(e) => onSubmit(e)}>Add player</button>
-      </form>
-      <div className="players-container">
-        Players:
-        <ul className="players-list">
-          {gameState.players.map((player) => (
-            <ul key={player.name}>
-              {player.name}
-              <button
-                type="button"
-                onClick={() => removePlayer(player.name)}
-              >
-                x
-              </button>
+      <form className="player-form">
+        <fieldset className="player-form-fieldset">
+          <legend className="player-form-legend">ADD NEW PLAYER</legend>
+          <label className="player-form-label">
+            ENTER PLAYER NAME:
+          </label>
+          <input
+            type="text"
+            placeholder="PLAYER NAME"
+            ref={textField}
+            className="player-form-input"
+          />
+          <button
+            type="submit"
+            className="player-form-submit"
+            onClick={(e) => onSubmit(e)}
+          >
+            ADD PLAYER
+          </button>
+          {gameState.players.length > 0 && (
+          <div className="players-container">
+            <h3 className="players-header">PLAYERS</h3>
+            <ul className="players-list">
+              {gameState.players.map((player) => (
+                <ul key={player.name} className="players-list-element">
+                  {player.name}
+                  <button
+                    type="button"
+                    className="players-list-btn"
+                    onClick={() => removePlayer(player.name)}
+                  >
+                    <span>✖</span>
+                  </button>
+                </ul>
+              ))}
             </ul>
-          ))}
-        </ul>
-      </div>
-      <button type="button" onClick={startGame}>Start game</button>
+            <button
+              type="button"
+              onClick={startGame}
+              className="start-game-btn"
+            >
+              START GAME
+            </button>
+          </div>
+          )}
+        </fieldset>
+      </form>
+
     </div>
   );
 }

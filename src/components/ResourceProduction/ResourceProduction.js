@@ -1,5 +1,6 @@
 import React from "react";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
+import "./ResourceProduction.css";
 
 function ResourceProduction({ player, resource })
 {
@@ -13,7 +14,7 @@ function ResourceProduction({ player, resource })
   return (
     <div className="resource-production">
       <p>Production:</p>
-      <div className="button-wrapper">
+      <div className="resource-production-btn-wrapper">
         <button
           onClick={() => addResourceProduction(name, resource)}
           type="button"

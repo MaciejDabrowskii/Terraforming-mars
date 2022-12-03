@@ -1,0 +1,45 @@
+.player-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid var(--white);
+    border-radius: .5rem;
+}
+
+.player-card > h3 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.resources {
+    display: flex;
+    justify-content: space-evenly;
+    gap: .5rem;
+}
+
+.player-resource {
+    width: 100%;
+}
+
+.player-resource-fieldset {
+    padding: .5rem 1rem;
+    border: 1px var(--white);
+    border-color: var(--white);
+    border-style: solid;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5rem;
+    gap: .5rem;
+
+}
+
+.player-resource-legend {
+    border: 1px solid var(--white);
+    padding: .2rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}

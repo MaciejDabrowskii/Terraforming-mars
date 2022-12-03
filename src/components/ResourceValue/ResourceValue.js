@@ -1,5 +1,6 @@
 import React from "react";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
+import "./ResourceValue.css";
 
 function ResourceValue({ player, resource })
 {
@@ -8,9 +9,9 @@ function ResourceValue({ player, resource })
   const { name, resources } = player;
 
   return (
-    <div>
+    <div className="resource-value">
       <p>Value:</p>
-      <div className="button-wrapper">
+      <div className="resource-value-btn-wrapper">
         <button
           onClick={() => addResourceValue(name, resource)}
           type="button"

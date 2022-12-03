@@ -1,9 +1,9 @@
 import React from "react";
-import GenerationBar from "../Generation-bar/Generation-bar";
 import ResourceValue from "../ResourceValue/ResourceValue";
 import ResourceProduction from "../ResourceProduction/ResourceProduction";
+import "./Player.css";
 
-function Player({ player, displayGenerationIndicator })
+function Player({ player })
 {
   const { resources, name } = player;
 
@@ -12,28 +12,30 @@ function Player({ player, displayGenerationIndicator })
 
   return (
     <div className="player-card">
-      <GenerationBar
-        barText={{ value: name, type: "name" }}
-        displayGenerationIndicator={displayGenerationIndicator}
-      />
-      <ul className="resources">
+      <h3>{name}</h3>
+      <div className="resources">
         {resourcesKeys.map((resource) => (
           resource !== "Terraformation level"
             ? (
-              <li key={resources[resource].index}>
-                {resource}
-                <ResourceProduction resource={resource} player={player} />
-                <ResourceValue resource={resource} player={player} />
-              </li>
+              <form className="player-resource" key={resources[resource].index}>
+                <fieldset className="player-resource-fieldset">
+                  <legend className="player-resource-legend">{resource}</legend>
+                  <ResourceProduction resource={resource} player={player} />
+                  <ResourceValue resource={resource} player={player} />
+                </fieldset>
+              </form>
             )
             : (
-              <li key={resources[resource].index}>
-                {resource}
-                <ResourceValue resource={resource} player={player} />
-              </li>
+
+              <form className="player-resource" key={resources[resource].index}>
+                <fieldset className="player-resource-fieldset">
+                  <legend className="player-resource-legend">{resource}</legend>
+                  <ResourceValue resource={resource} player={player} />
+                </fieldset>
+              </form>
             )
         ))}
-      </ul>
+      </div>
     </div>
   );
 }

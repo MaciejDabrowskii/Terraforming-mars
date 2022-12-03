@@ -1,4 +1,5 @@
 import React from "react";
+import "./Generation-end-overlay.css";
 
 function GenerationEndOverlay({ setShowOverlay, endGeneration })
 {
@@ -9,12 +10,26 @@ function GenerationEndOverlay({ setShowOverlay, endGeneration })
   };
 
   return (
-    <div className="generatoion-overlay-container">
-      End generation?
-      <div>
-        <button type="button" onClick={handleConfirm}>Yes</button>
-        <button type="button" onClick={() => setShowOverlay(false)}>No</button>
+    <div className="generation-overlay-container">
+      <div className="generation-overlay-wrapper">
 
+        END GENERATION?
+        <div className="generation-overlay-btn-wrapper">
+          <button
+            className="generation-overlay-btn"
+            type="button"
+            onClick={handleConfirm}
+          >
+            YES
+          </button>
+          <button
+            className="generation-overlay-btn"
+            type="button"
+            onClick={() => setShowOverlay(false)}
+          >
+            NO
+          </button>
+        </div>
       </div>
     </div>
   );

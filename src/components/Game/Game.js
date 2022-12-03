@@ -9,6 +9,7 @@ import GenerationBar from "../Generation-bar/Generation-bar";
 import { database } from "../../Firebase/Firebase-init";
 import GenerationEndOverlay from "../Generation-end-overlay/Generation-end-overlay";
 import "react-toastify/dist/ReactToastify.css";
+import "./Game.css";
 
 function Game()
 {
@@ -96,18 +97,19 @@ function Game()
         ? (
           <>
             <GenerationBar
-              barText={{ value: gameID, type: "id" }}
+              barText={gameID}
               displayGenerationIndicator
               showToastInfoMessage={showToastInfoMessage}
             />
             <div className="Players-container">
-              {players.map((player) => (<Player player={player} displayIndicator={false} />))}
+              {players.map((player) => (<Player key={player.name} player={player} displayIndicator={false} />))}
             </div>
             <button
               type="button"
+              className="end-Generation"
               onClick={() => setShowOverlay(true)}
             >
-              End Generation
+              END GENERATION
             </button>
           </>
         )

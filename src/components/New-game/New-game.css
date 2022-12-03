@@ -1,0 +1,123 @@
+.New-game-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1rem;
+}
+
+.player-form-fieldset {
+    padding: 2rem;
+    border-color: var(--white);
+    border-style: solid;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.player-form-legend {
+    border: 2px solid var(--white);
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    font-weight: bold;
+}
+
+.player-form-label, .player-form-input, .player-form-submit, .start-game-btn {
+    text-decoration: none;
+    color: var(--white);
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--white);
+    background-color: transparent;
+    font-size: 1rem;
+}
+
+.player-form-label {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.player-form-input {
+    border-radius: 0;
+}
+
+.player-form-input::placeholder {
+    color: rgba(248, 249, 250, 0.664);
+}
+
+.player-form-submit {
+    cursor: pointer;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+.player-form-submit:hover {
+    color: #000;
+    background-color: var(--white);
+    border-color: var(--white);
+}
+
+.players-header {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.players-list-element {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid var(--white);
+}
+
+.players-list-element:first-child {
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+}
+
+.players-list-btn {
+    position: relative;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--white);
+    color: var(--white);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.players-list-btn > span {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.players-list-btn:hover, .start-game-btn:hover {
+    color: #000;
+    background-color: var(--white);
+    border-color: var(--white);
+}
+
+.start-game-btn {
+    width: 100%;
+    cursor: pointer;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
