@@ -1,16 +1,38 @@
 import React from "react";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
 
-function GenerationBar({ barText })
+function GenerationBar({
+  barText,
+  displayGenerationIndicator,
+  showToastInfoMessage,
+})
 {
   const { gameState: { generation } } = GlobalStatesMethods();
+
+  const { value, type } = barText;
+
+  const handleClick = () =>
+  {
+    navigator.clipboard.writeText(value);
+    showToastInfoMessage("Copied to Clipboard!");
+  };
 
   return (
     <div className="generation-bar-container">
       <div className="left">
-        {barText}
+        {type === "name"
+          ? (<p>{value}</p>)
+          : (
+            <button
+              type="button"
+              onClick={handleClick}
+            >
+              {value}
+            </button>
+          )}
       </div>
-      <div className="generation-indicator">{generation}</div>
+      {displayGenerationIndicator
+      && (<div className="generation-indicator">{generation}</div>)}
       <div className="right" />
     </div>
   );

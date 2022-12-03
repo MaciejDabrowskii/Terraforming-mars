@@ -13,8 +13,6 @@ export function GlobalStateProvider({ children })
 {
   const [gameID, setGameID] = useState(null);
 
-  const [players, setPlayers] = useState([]);
-
   const [gameState, setGameState] = useState(
     {
       players: [],
@@ -91,6 +89,48 @@ export function GlobalStateProvider({ children })
     }));
   };
 
+  const subtractSpecificResourceValue = (playerName, resource, specificValue) =>
+  {
+    setGameState((prevState) => ({
+      ...prevState,
+      players: prevState.players.map((player) => (
+        player.name === playerName
+          ? {
+            ...player,
+            resources: {
+              ...player.resources,
+              [resource]: {
+                ...player.resources[resource],
+                value: player.resources[resource].value - specificValue,
+              },
+            },
+          }
+          : player
+      )),
+    }));
+  };
+
+  const addSpecificResourceValue = (playerName, resource, specificValue) =>
+  {
+    setGameState((prevState) => ({
+      ...prevState,
+      players: prevState.players.map((player) => (
+        player.name === playerName
+          ? {
+            ...player,
+            resources: {
+              ...player.resources,
+              [resource]: {
+                ...player.resources[resource],
+                value: player.resources[resource].value + specificValue,
+              },
+            },
+          }
+          : player
+      )),
+    }));
+  };
+
   const addResourceProduction = (playerName, resource) =>
   {
     setGameState((prevState) => ({
@@ -154,23 +194,23 @@ export function GlobalStateProvider({ children })
     }));
   };
 
-  const addPlayer = (newPlayer) => setPlayers([...players, newPlayer]);
-
-  const removePlayer = (playerName) => setPlayers(players.filter((player) => player !== playerName));
+  const removePlayer = (playerName) => setGameState((prevState) => ({
+    ...prevState,
+    players: prevState.players.filter((player) => player.name !== playerName),
+  }));
 
   const methods = {
     gameID,
-    players,
     gameState,
     setGameID,
-    setPlayers,
     setGameState,
     addResourceValue,
     subtractResourceValue,
+    addSpecificResourceValue,
+    subtractSpecificResourceValue,
     addResourceProduction,
     subtractResourceProduction,
     addGeneration,
-    addPlayer,
     removePlayer,
     setupPlayer,
     addProductionToValue,

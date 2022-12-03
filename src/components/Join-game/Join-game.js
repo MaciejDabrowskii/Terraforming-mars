@@ -1,21 +1,20 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
 import { firebaseMethods } from "../../Contexts/Firebase-context";
+import "react-toastify/dist/ReactToastify.css";
+import "./Join-game.css";
 
 function JoinGame()
 {
   const [formVisible, setFormVisible] = useState(false);
 
-  const [showAlert, setShowAlert] = useState(false);
-
   const { fetchDocumentData, checkIfDocumentExists } = firebaseMethods();
 
   const {
-    gameState,
     setGameState,
     setGameID,
-    setPlayers,
   } = GlobalStatesMethods();
 
   const textField = useRef();
@@ -24,11 +23,16 @@ function JoinGame()
 
   const toggleForm = () => setFormVisible((prevState) => !prevState);
 
-  const alert = () =>
-  {
-    setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 3000);
-  };
+  const showToastErrorMessage = (errorMessage) => toast.error(errorMessage, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
   const onSubmit = async (e) =>
   {
@@ -40,27 +44,41 @@ function JoinGame()
         .then((res) => setGameState(res))
         .catch((err) => console.log(err));
       setGameID(textField.current.value);
-      setPlayers(() => gameState.players.map((player) => player.name));
       navigateTo("/Select-player");
     }
-    else alert();
+    else showToastErrorMessage("Wrong Id");
   };
 
   return (
     <div className="join-game-container">
-      <button type="button" onClick={toggleForm}>Join Existing Game</button>
-      { formVisible && (
-      <form>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      <button
+        type="button"
+        onClick={toggleForm}
+        className={formVisible ? "join-btn visible" : "join-btn"}
+      >
+        JOIN EXISTING GAME
+      </button>
+      <form className={formVisible ? "join-form" : "join-form hidden"}>
         <input
           type="text"
           className="game-id-input"
-          placeholder="Game ID"
+          placeholder=" ENTER GAME ID"
           ref={textField}
         />
-        <button type="submit" className="" onClick={onSubmit}>Confirm</button>
-        {showAlert && <span>*no documento</span>}
+        <button type="submit" onClick={onSubmit}>CONFIRM</button>
       </form>
-      )}
     </div>
   );
 }

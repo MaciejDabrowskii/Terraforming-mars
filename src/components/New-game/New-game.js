@@ -1,45 +1,63 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router";
+import { ToastContainer, toast } from "react-toastify";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
 import { firebaseMethods } from "../../Contexts/Firebase-context";
+import "react-toastify/dist/ReactToastify.css";
+import "./New-game.css";
 
 function NewGAme()
 {
-  const [nameAlert, setNameAlert] = useState(false);
-
-  const [newGameAlert, setNewGameAlert] = useState(false);
-
   const navigateTo = useNavigate();
 
   const textField = useRef();
 
   const {
-    players, gameState, removePlayer, setupPlayer, gameID,
+    gameState, removePlayer, setupPlayer, gameID,
   } = GlobalStatesMethods();
 
   const { updateDocument, addData } = firebaseMethods();
 
-  const alertName = () =>
-  {
-    setNameAlert(true);
-    setTimeout(() => setNameAlert(false), 3000);
-  };
+  const showToastErrorMessage = (errorMessage) => toast.error(errorMessage, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
-  const alertNewGame = () =>
-  {
-    setNewGameAlert(true);
-    setTimeout(() => setNewGameAlert(false), 3000);
-  };
+  const showToastSuccessMessage = (successMessage) => toast.success(successMessage, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
   const onSubmit = (e) =>
   {
     e.preventDefault();
-    players.some((player) => player === textField.current.value)
-      ? alertName(true)
-      : setupPlayer(textField.current.value);
+
+    const { players } = gameState;
+
+    const create = () =>
+    {
+      setupPlayer(textField.current.value);
+      showToastSuccessMessage("Player created!");
+    };
+
+    players.some((player) => player.name === textField.current.value)
+      ? showToastErrorMessage("Player exist!, please enter alternative name or add number")
+      : create();
   };
 
   const newGame = async () =>
@@ -51,7 +69,11 @@ function NewGAme()
 
   const startGame = async () =>
   {
-    gameState.players.length > 1 ? newGame() : alertNewGame();
+    const { players } = gameState;
+
+    players.length > 1
+      ? newGame()
+      : showToastErrorMessage("min. 2 players to begin");
   };
 
   useEffect(() =>
@@ -64,13 +86,24 @@ function NewGAme()
 
   return (
     <div className="New-game-container">
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <form>
         <label>
           Enter player name:
           <input type="text" placeholder="Player Name" ref={textField} />
         </label>
         <button type="submit" onClick={(e) => onSubmit(e)}>Add player</button>
-        {nameAlert && <span>Player exist!, please enter alternative name or add number</span>}
       </form>
       <div className="players-container">
         Players:
@@ -80,7 +113,7 @@ function NewGAme()
               {player.name}
               <button
                 type="button"
-                onClick={() => removePlayer(player)}
+                onClick={() => removePlayer(player.name)}
               >
                 x
               </button>
@@ -89,7 +122,6 @@ function NewGAme()
         </ul>
       </div>
       <button type="button" onClick={startGame}>Start game</button>
-      {newGameAlert && <span>min. 2 players to begin</span>}
     </div>
   );
 }

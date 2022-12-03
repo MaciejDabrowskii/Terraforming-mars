@@ -10,7 +10,7 @@ function PlayerSelect()
   return (
     <div className="player-select-container">
       <h1>Select Player</h1>
-      {players.map((player) => (<Link to={`/${player.name}`}>{player.name}</Link>))}
+      {players.map((player) => (<Link key={player.name} to={`/${player.name}`}>{player.name}</Link>))}
     </div>
   );
 }

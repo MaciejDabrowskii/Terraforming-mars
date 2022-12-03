@@ -12,19 +12,22 @@ function ResourceProduction({ player, resource })
 
   return (
     <div className="resource-production">
-      <button
-        onClick={() => addResourceProduction(name, resource)}
-        type="button"
-      >
-        +
-      </button>
-      {resources[resource].production }
-      <button
-        onClick={() => subtractResourceProduction(name, resource)}
-        type="button"
-      >
-        -
-      </button>
+      <p>Production:</p>
+      <div className="button-wrapper">
+        <button
+          onClick={() => addResourceProduction(name, resource)}
+          type="button"
+        >
+          +
+        </button>
+        <div className="value">{resources[resource].production }</div>
+        <button
+          onClick={() => subtractResourceProduction(name, resource)}
+          type="button"
+        >
+          -
+        </button>
+      </div>
     </div>
   );
 }

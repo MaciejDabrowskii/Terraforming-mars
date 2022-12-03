@@ -9,19 +9,24 @@ function ResourceValue({ player, resource })
 
   return (
     <div>
-      <button
-        onClick={() => addResourceValue(name, resource)}
-        type="button"
-      >
-        +
-      </button>
-      {resources[resource].value }
-      <button
-        onClick={() => subtractResourceValue(name, resource)}
-        type="button"
-      >
-        -
-      </button>
+      <p>Value:</p>
+      <div className="button-wrapper">
+        <button
+          onClick={() => addResourceValue(name, resource)}
+          type="button"
+        >
+          +
+        </button>
+        <div className="value">
+          {resources[resource].value }
+        </div>
+        <button
+          onClick={() => subtractResourceValue(name, resource)}
+          type="button"
+        >
+          -
+        </button>
+      </div>
     </div>
   );
 }

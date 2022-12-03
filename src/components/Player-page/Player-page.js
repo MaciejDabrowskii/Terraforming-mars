@@ -1,13 +1,33 @@
 /* eslint-disable max-len */
 import React, { useEffect } from "react";
 import { onSnapshot, doc } from "firebase/firestore";
+import { ToastContainer, toast } from "react-toastify";
 import Player from "../Player/Player";
 import { database } from "../../Firebase/Firebase-init";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
+import "react-toastify/dist/ReactToastify.css";
 
 function PlayerPage({ player })
 {
-  const { gameID, setGameState } = GlobalStatesMethods();
+  const { gameID, gameState, setGameState } = GlobalStatesMethods();
+
+  const { generation } = gameState;
+
+  const showToastInfoMessage = (infoMessage) => toast.info(infoMessage, {
+    position: "top-center",
+    autoClose: 1500,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+  useEffect(() =>
+  {
+    showToastInfoMessage("Generation Ended");
+  }, [generation]);
 
   useEffect(() =>
   {
@@ -21,27 +41,24 @@ function PlayerPage({ player })
 
   return (
     <div className="player-page">
-      <Player player={player} />
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      <Player
+        player={player}
+        displayGenerationIndicator
+      />
     </div>
   );
 }
 
 export default PlayerPage;
-// useEffect(() =>
-// {
-//   const unsubscribe = onSnapshot(doc(database, "TerraformingMars", gameID), (data) =>
-//   {
-//     setGameState({
-//       ...data.data(),
-//       players: data.data().players.map((dataPlayer) =>
-//       {
-//         const sortedRescources = Object.entries(dataPlayer.resources)
-//           .sort(([, a], [, b]) => a.index - b.index)
-//           .reduce((object, [key, value]) => ({ ...object, [key]: value }), {});
-
-//         console.log(sortedRescources);
-
-//         return { ...dataPlayer, resources: sortedRescources };
-//       }),
-//     });
-//   });

@@ -1,0 +1,53 @@
+.home-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 4rem;
+    border: 2px solid var(--white);
+    border-radius: 0.5rem;
+}
+
+.home-page-title {
+    font-size: 4rem;
+}
+
+.home-page-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.new-game-link {
+    text-decoration: none;
+    color: var(--white);
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--white);
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: 1rem;
+    width: 100%;
+}
+
+.new-game-link:hover {
+    color: #000;
+    background-color: var(--white);
+    border-color: var(--white);
+}
