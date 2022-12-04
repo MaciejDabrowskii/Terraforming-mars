@@ -9,21 +9,29 @@ function ResourceProduction({ player, resource })
     subtractResourceProduction,
   } = GlobalStatesMethods();
 
-  const { name, resources } = player;
+  const {
+    name,
+    resources,
+    valueNumbers: { selectedValue },
+  } = player;
 
   return (
     <div className="resource-production">
       <p>Production:</p>
       <div className="resource-production-btn-wrapper">
         <button
-          onClick={() => addResourceProduction(name, resource)}
+          onClick={() => addResourceProduction(name, resource, selectedValue)}
           type="button"
         >
           +
         </button>
         <div className="value">{resources[resource].production }</div>
         <button
-          onClick={() => subtractResourceProduction(name, resource)}
+          onClick={() => subtractResourceProduction(
+            name,
+            resource,
+            selectedValue,
+          )}
           type="button"
         >
           -

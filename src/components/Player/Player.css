@@ -6,10 +6,17 @@
     border-radius: .5rem;
 }
 
-.player-card > h3 {
+.header-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.header-wrapper > h3 {
     font-size: 3rem;
     text-align: center;
-    margin-bottom: 1rem;
 }
 
 .resources {
@@ -43,3 +50,20 @@
     font-weight: bold;
     text-transform: uppercase;
 }
+
+@media (max-width: 1750px) {
+    .player-card {
+        padding: 0;
+        border: none;
+    }
+
+    .resources {
+        flex-direction: column;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .player-card > h3 {
+        font-size: 1.5rem;
+    }
+  }

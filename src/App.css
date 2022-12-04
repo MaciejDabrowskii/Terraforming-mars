@@ -1,9 +1,12 @@
 :root {
-    --orange: rgb(250, 107, 41);
-    --green: rgb(132, 226, 43);
+    --orange: #ee7752;
+    --green: #84e22b;
     --red: rgb(226, 40, 40);
     --white: rgb(248, 249, 250);
-    /* font-size: 8px; */
+    --blue: #23a6d5;
+    --pink: #e73c7e;
+    --cyan: #23d5ab;
+
     --bs-font-sans-serif: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"
 }
 
@@ -29,16 +32,22 @@
   background-color: var(--orange) !important;
 }
 
-body {
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+#root {
+  background: linear-gradient(-45deg, var(--orange), var(--pink), var(--blue), var(--cyan));
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
-	height: 100vh;
-    font-family: var(--bs-font-sans-serif);
-    color: white;
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent;
-    position: relative;
+  font-family: var(--bs-font-sans-serif);
+  color: white;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  min-height: 100vh;
+}
+
+#root.static {
+  background: var(--blue);
+	background-size: 400% 400%;
+	animation: unset;
 }
 
 @keyframes gradient {
@@ -55,4 +64,10 @@ body {
 
 legend {
   text-align: center;
+}
+
+@media (max-width: 480px) {
+  #root {
+    background: var(--blue);
+  }
 }

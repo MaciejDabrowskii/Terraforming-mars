@@ -19,6 +19,7 @@
 
 .home-page-title {
     font-size: 4rem;
+    text-align: center;
 }
 
 .home-page-options {
@@ -51,3 +52,15 @@
     background-color: var(--white);
     border-color: var(--white);
 }
+
+@media (max-width: 480px) {
+    .home-page-wrapper {
+        gap: 1rem;
+        padding: 0;
+        border: none;
+    }
+
+    .home-page-title {
+        font-size: 3rem;
+    }
+  }

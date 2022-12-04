@@ -32,19 +32,14 @@
     background-color: transparent;
     color: var(--white);
     cursor: pointer;
+    font-weight: 700;
+    font-size: 1.4rem;
 }
 
 .resource-value-btn-wrapper > button:hover {
     color: #000;
     background-color: var(--white);
     border-color: var(--white);
-}
-
-.value {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .resource-value-btn-wrapper > button:first-child {

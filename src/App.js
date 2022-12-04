@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable max-len */
 import "./App.css";
 import React, { useEffect } from "react";
@@ -14,7 +15,10 @@ import PlayerSelect from "./components/Player-select/Player-select";
 function App()
 {
   const {
-    gameState: { players }, gameState, gameID,
+    gameState: { players },
+    gameState,
+    gameID,
+    staticBackground,
   } = GlobalStatesMethods();
 
   const { updateDocument } = firebaseMethods();
@@ -24,6 +28,21 @@ function App()
     if (players.length <= 1) return;
     updateDocument(gameID, gameState);
   }, [gameState]);
+
+  useEffect(() =>
+  {
+    if (players.length <= 1) return;
+    updateDocument(gameID, gameState);
+  }, [gameState]);
+
+  useEffect(() =>
+  {
+    const root = document.getElementById("root");
+
+    staticBackground
+      ? root.classList.add("static")
+      : root.classList.remove("static");
+  }, [staticBackground]);
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL}>

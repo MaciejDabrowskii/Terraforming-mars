@@ -13,6 +13,8 @@ export function GlobalStateProvider({ children })
 {
   const [gameID, setGameID] = useState(null);
 
+  const [staticBackground, setStaticBackground] = useState(false);
+
   const [gameState, setGameState] = useState(
     {
       players: [],
@@ -29,6 +31,10 @@ export function GlobalStateProvider({ children })
           ...prevState.players,
           {
             name,
+            valueNumbers: {
+              values: [1, 5, 10],
+              selectedValue: 1,
+            },
             resources: {
               Money: { production: 0, value: 0, index: 1 },
               Steel: { production: 0, value: 0, index: 2 },
@@ -47,7 +53,25 @@ export function GlobalStateProvider({ children })
   const addGeneration = () => setGameState((prevState) => (
     { ...prevState, generation: prevState.generation + 1 }));
 
-  const addResourceValue = (playerName, resource) =>
+  const setValueNumbers = (playerName, value) =>
+  {
+    setGameState((prevState) => ({
+      ...prevState,
+      players: prevState.players.map((player) => (
+        player.name === playerName
+          ? {
+            ...player,
+            valueNumbers: {
+              ...player.valueNumbers,
+              selectedValue: value,
+            },
+          }
+          : player
+      )),
+    }));
+  };
+
+  const addResourceValue = (playerName, resource, value) =>
   {
     setGameState((prevState) => ({
       ...prevState,
@@ -59,7 +83,7 @@ export function GlobalStateProvider({ children })
               ...player.resources,
               [resource]: {
                 ...player.resources[resource],
-                value: player.resources[resource].value + 1,
+                value: player.resources[resource].value + value,
               },
             },
           }
@@ -68,7 +92,7 @@ export function GlobalStateProvider({ children })
     }));
   };
 
-  const subtractResourceValue = (playerName, resource) =>
+  const subtractResourceValue = (playerName, resource, value) =>
   {
     setGameState((prevState) => ({
       ...prevState,
@@ -80,7 +104,7 @@ export function GlobalStateProvider({ children })
               ...player.resources,
               [resource]: {
                 ...player.resources[resource],
-                value: player.resources[resource].value - 1,
+                value: player.resources[resource].value - value,
               },
             },
           }
@@ -89,7 +113,7 @@ export function GlobalStateProvider({ children })
     }));
   };
 
-  const subtractSpecificResourceValue = (playerName, resource, specificValue) =>
+  const addResourceProduction = (playerName, resource, value) =>
   {
     setGameState((prevState) => ({
       ...prevState,
@@ -101,7 +125,7 @@ export function GlobalStateProvider({ children })
               ...player.resources,
               [resource]: {
                 ...player.resources[resource],
-                value: player.resources[resource].value - specificValue,
+                production: player.resources[resource].production + value,
               },
             },
           }
@@ -110,7 +134,7 @@ export function GlobalStateProvider({ children })
     }));
   };
 
-  const addSpecificResourceValue = (playerName, resource, specificValue) =>
+  const subtractResourceProduction = (playerName, resource, value) =>
   {
     setGameState((prevState) => ({
       ...prevState,
@@ -122,49 +146,7 @@ export function GlobalStateProvider({ children })
               ...player.resources,
               [resource]: {
                 ...player.resources[resource],
-                value: player.resources[resource].value + specificValue,
-              },
-            },
-          }
-          : player
-      )),
-    }));
-  };
-
-  const addResourceProduction = (playerName, resource) =>
-  {
-    setGameState((prevState) => ({
-      ...prevState,
-      players: prevState.players.map((player) => (
-        player.name === playerName
-          ? {
-            ...player,
-            resources: {
-              ...player.resources,
-              [resource]: {
-                ...player.resources[resource],
-                production: player.resources[resource].production + 1,
-              },
-            },
-          }
-          : player
-      )),
-    }));
-  };
-
-  const subtractResourceProduction = (playerName, resource) =>
-  {
-    setGameState((prevState) => ({
-      ...prevState,
-      players: prevState.players.map((player) => (
-        player.name === playerName
-          ? {
-            ...player,
-            resources: {
-              ...player.resources,
-              [resource]: {
-                ...player.resources[resource],
-                production: player.resources[resource].production - 1,
+                production: player.resources[resource].production - value,
               },
             },
           }
@@ -199,21 +181,28 @@ export function GlobalStateProvider({ children })
     players: prevState.players.filter((player) => player.name !== playerName),
   }));
 
+  const switchBackground = () =>
+  {
+    setStaticBackground((prevState) => !prevState);
+  };
+
   const methods = {
     gameID,
     gameState,
+    staticBackground,
     setGameID,
     setGameState,
     addResourceValue,
     subtractResourceValue,
-    addSpecificResourceValue,
-    subtractSpecificResourceValue,
     addResourceProduction,
     subtractResourceProduction,
     addGeneration,
     removePlayer,
     setupPlayer,
     addProductionToValue,
+    setStaticBackground,
+    switchBackground,
+    setValueNumbers,
   };
 
   return (

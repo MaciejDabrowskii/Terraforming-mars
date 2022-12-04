@@ -3,6 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import JoinGame from "../Join-game/Join-game";
 import "./Home-page.css";
+import SwitchBtn from "../Switch-btn/Switch-btn";
 
 function HomePage()
 {
@@ -11,6 +12,7 @@ function HomePage()
     <div className="home-page">
       <div className="home-page-wrapper">
         <h1 className="home-page-title">Terraforming Mars</h1>
+        <SwitchBtn />
         <div className="home-page-options">
           <Link to="/New-game" className="new-game-link">NEW GAME</Link>
           <JoinGame />

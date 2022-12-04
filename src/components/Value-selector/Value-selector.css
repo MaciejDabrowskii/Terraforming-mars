@@ -1,0 +1,37 @@
+.valueSelector-container {
+    display: flex;
+    border: 2px solid var(--white);
+    border-radius: .25rem;
+    overflow: hidden;
+}
+
+.valueSelector-btn {
+    padding: .5rem;
+    border: none;
+    background-color: transparent;
+    width: 100%;
+    color: var(--white);
+    font-size: 1rem;
+    font-weight: 700;
+    min-height: 2rem;
+    min-width: 2rem;
+    cursor: pointer;
+}
+
+.valueSelector-btn:hover {
+    color: #000;
+    background-color: var(--white);
+    border-color: var(--white);
+}
+
+.valueSelector-btn.selected {
+    background-color: var(--orange);
+}
+
+.valueSelector-btn:first-child {
+    border-right: 1px solid var(--white);
+}
+
+.valueSelector-btn:last-child {
+    border-left: 1px solid var(--white);
+}

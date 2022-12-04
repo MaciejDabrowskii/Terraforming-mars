@@ -128,30 +128,30 @@ function NewGAme()
             ADD PLAYER
           </button>
           {gameState.players.length > 0 && (
-          <div className="players-container">
-            <h3 className="players-header">PLAYERS</h3>
-            <ul className="players-list">
-              {gameState.players.map((player) => (
-                <ul key={player.name} className="players-list-element">
-                  {player.name}
-                  <button
-                    type="button"
-                    className="players-list-btn"
-                    onClick={() => removePlayer(player.name)}
-                  >
-                    <span>✖</span>
-                  </button>
-                </ul>
-              ))}
-            </ul>
-            <button
-              type="button"
-              onClick={startGame}
-              className="start-game-btn"
-            >
-              START GAME
-            </button>
-          </div>
+            <div className="players-container">
+              <h3 className="players-header">PLAYERS</h3>
+              <ul className="players-list">
+                {gameState.players.map((player) => (
+                  <ul key={player.name} className="players-list-element">
+                    {player.name}
+                    <button
+                      type="button"
+                      className="players-list-btn"
+                      onClick={() => removePlayer(player.name)}
+                    >
+                      <span>✖</span>
+                    </button>
+                  </ul>
+                ))}
+              </ul>
+              <button
+                type="button"
+                onClick={startGame}
+                className="start-game-btn"
+              >
+                START GAME
+              </button>
+            </div>
           )}
         </fieldset>
       </form>

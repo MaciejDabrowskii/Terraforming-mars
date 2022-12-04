@@ -1,6 +1,7 @@
 import React from "react";
 import ResourceValue from "../ResourceValue/ResourceValue";
 import ResourceProduction from "../ResourceProduction/ResourceProduction";
+import ValueSelector from "../Value-selector/Value-selector";
 import "./Player.css";
 
 function Player({ player })
@@ -12,7 +13,10 @@ function Player({ player })
 
   return (
     <div className="player-card">
-      <h3>{name}</h3>
+      <div className="header-wrapper">
+        <h3>{name}</h3>
+        <ValueSelector player={player} />
+      </div>
       <div className="resources">
         {resourcesKeys.map((resource) => (
           resource !== "Terraformation level"

@@ -8,11 +8,9 @@ import { FirebaseProvider } from "./Contexts/Firebase-context";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-
   <GlobalStateProvider>
     <FirebaseProvider>
       <App />
     </FirebaseProvider>
   </GlobalStateProvider>,
-
 );

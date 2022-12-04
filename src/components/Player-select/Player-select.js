@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { GlobalStatesMethods } from "../../Contexts/Global-state-context";
+import "./Player-select.css";
 
 function PlayerSelect()
 {
@@ -9,7 +10,7 @@ function PlayerSelect()
 
   return (
     <div className="player-select-container">
-      <h1>Select Player</h1>
+      <h1>SELECT PLAYER</h1>
       {players.map((player) => (<Link key={player.name} to={`/${player.name}`}>{player.name}</Link>))}
     </div>
   );

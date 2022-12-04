@@ -18,8 +18,8 @@ function Game()
     gameID,
     addGeneration,
     addProductionToValue,
-    addSpecificResourceValue,
-    subtractSpecificResourceValue,
+    addResourceValue,
+    subtractResourceValue,
     setGameState,
   } = GlobalStatesMethods();
 
@@ -52,8 +52,15 @@ function Game()
         {
           const ElectricityValue = player.resources.Electricity.value;
 
-          addSpecificResourceValue(name, "Heat", ElectricityValue);
-          subtractSpecificResourceValue(name, "Electricity", ElectricityValue);
+          addResourceValue(name, "Heat", ElectricityValue);
+          subtractResourceValue(name, "Electricity", ElectricityValue);
+        }
+
+        if (resource === "Terraformation level")
+        {
+          const terraformationLevelValue = player.resources["Terraformation level"].value;
+
+          addResourceValue(name, "Money", terraformationLevelValue);
         }
       });
       resources.forEach((resource) => addProductionToValue(name, resource));
@@ -62,15 +69,24 @@ function Game()
     showToastInfoMessage("Generation Ended");
   };
 
+  const handleKeyPress = (event) =>
+  {
+    if (event.key === "Enter") setShowOverlay(true);
+  };
+
   useEffect(() =>
   {
     const unsubscribe = onSnapshot(doc(database, "TerraformingMars", gameID), (data) => setGameState(data.data()));
 
+    document.addEventListener("keydown", handleKeyPress);
+
     return () =>
     {
       unsubscribe();
+      document.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
+
   return (
 
     <div className="game-container">
@@ -87,11 +103,10 @@ function Game()
         theme="colored"
       />
       {showOverlay && (
-      <GenerationEndOverlay
-        showOverlay={showOverlay}
-        setShowOverlay={setShowOverlay}
-        endGeneration={endGeneration}
-      />
+        <GenerationEndOverlay
+          setShowOverlay={setShowOverlay}
+          endGeneration={endGeneration}
+        />
       )}
       {gameID
         ? (

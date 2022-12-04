@@ -28,6 +28,8 @@
     background-color: transparent;
     color: var(--white);
     cursor: pointer;
+    font-weight: 700;
+    font-size: 1.4rem;
 }
 
 .resource-production-btn-wrapper > button:hover {
@@ -41,6 +43,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 700;
+    font-size: 1.4rem;
 }
 
 .resource-production-btn-wrapper > button:first-child {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Generation-end-overlay.css";
 
 function GenerationEndOverlay({ setShowOverlay, endGeneration })
@@ -8,6 +8,16 @@ function GenerationEndOverlay({ setShowOverlay, endGeneration })
     endGeneration();
     setShowOverlay(false);
   };
+
+  useEffect(() =>
+  {
+    document.addEventListener("keydown", handleConfirm);
+
+    return () =>
+    {
+      document.removeEventListener("keydown", handleConfirm);
+    };
+  }, []);
 
   return (
     <div className="generation-overlay-container">

@@ -4,16 +4,23 @@ import "./ResourceValue.css";
 
 function ResourceValue({ player, resource })
 {
-  const { addResourceValue, subtractResourceValue } = GlobalStatesMethods();
+  const {
+    addResourceValue,
+    subtractResourceValue,
+  } = GlobalStatesMethods();
 
-  const { name, resources } = player;
+  const {
+    name,
+    resources,
+    valueNumbers: { selectedValue },
+  } = player;
 
   return (
     <div className="resource-value">
       <p>Value:</p>
       <div className="resource-value-btn-wrapper">
         <button
-          onClick={() => addResourceValue(name, resource)}
+          onClick={() => addResourceValue(name, resource, selectedValue)}
           type="button"
         >
           +
@@ -22,7 +29,7 @@ function ResourceValue({ player, resource })
           {resources[resource].value }
         </div>
         <button
-          onClick={() => subtractResourceValue(name, resource)}
+          onClick={() => subtractResourceValue(name, resource, selectedValue)}
           type="button"
         >
           -
