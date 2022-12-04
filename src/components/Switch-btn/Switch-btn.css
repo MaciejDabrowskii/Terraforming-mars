@@ -5,3 +5,9 @@
     font-weight: 600;
     gap: 10px;
 }
+
+@media (max-width: 480px) {
+    .Switch-btn-label {
+        display: none;
+    }
+}
