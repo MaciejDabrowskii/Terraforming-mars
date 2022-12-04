@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 const GlobalStateContext = React.createContext();
 
@@ -11,15 +11,20 @@ export function GlobalStatesMethods()
 
 export function GlobalStateProvider({ children })
 {
-  const [gameID, setGameID] = useState(null);
+  const [gameID, setGameID] = useState(() => (localStorage.getItem("gameID") !== null
+    ? JSON.parse(localStorage.getItem("gameID"))
+    : null));
 
   const [staticBackground, setStaticBackground] = useState(false);
 
   const [gameState, setGameState] = useState(
-    {
-      players: [],
-      generation: 1,
-    },
+    () => (localStorage.getItem("gameState") !== null
+      ? JSON.parse(localStorage.getItem("gameState"))
+      : {
+        players: [],
+        generation: 1,
+      }),
+
   );
 
   const setupPlayer = (name) =>
@@ -49,6 +54,17 @@ export function GlobalStateProvider({ children })
       }
     ));
   };
+
+  const setLocalStorageData = () =>
+  {
+    localStorage.setItem("gameID", JSON.stringify(gameID));
+    localStorage.setItem("gameState", JSON.stringify(gameState));
+  };
+
+  useEffect(() =>
+  {
+    setLocalStorageData();
+  }, [gameID, gameState]);
 
   const addGeneration = () => setGameState((prevState) => (
     { ...prevState, generation: prevState.generation + 1 }));

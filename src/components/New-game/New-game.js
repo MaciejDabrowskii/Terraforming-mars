@@ -58,14 +58,14 @@ function NewGAme()
     {
       textField.current.value !== ""
         ? (
-          setupPlayer(textField.current.value),
+          setupPlayer(textField.current.value.replace(/\/+$/, "")),
           showToastSuccessMessage("Player created!"),
           clearTextfield()
         )
         : showToastErrorMessage("Name must be at least 1 character long!");
     };
 
-    players.some((player) => player.name === textField.current.value)
+    players.some((player) => player.name === textField.current.value.replace(/\/+$/, ""))
       ? showToastErrorMessage("Player exist!, please enter alternative name or add number")
       : create();
   };
