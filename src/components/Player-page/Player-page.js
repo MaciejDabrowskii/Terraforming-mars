@@ -26,7 +26,7 @@ function PlayerPage({ player })
 
   useEffect(() =>
   {
-    showToastInfoMessage("Generation Ended");
+    if (generation > 1) showToastInfoMessage("Generation Ended");
   }, [generation]);
 
   useEffect(() =>
