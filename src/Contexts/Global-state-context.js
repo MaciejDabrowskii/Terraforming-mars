@@ -41,7 +41,7 @@ export function GlobalStateProvider({ children })
               selectedValue: 1,
             },
             resources: {
-              Money: { production: 0, value: 0, index: 1 },
+              MegaCredits: { production: 0, value: 0, index: 1 },
               Steel: { production: 0, value: 0, index: 2 },
               Titanium: { production: 0, value: 0, index: 3 },
               Plants: { production: 0, value: 0, index: 4 },

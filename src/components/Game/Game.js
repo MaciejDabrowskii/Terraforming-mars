@@ -61,7 +61,7 @@ function Game()
         {
           const terraformationLevelValue = player.resources["Terraform rating"].value;
 
-          addResourceValue(name, "Money", terraformationLevelValue);
+          addResourceValue(name, "MegaCredits", terraformationLevelValue);
         }
       });
       resources.forEach((resource) => addProductionToValue(name, resource));
