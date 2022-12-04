@@ -16,6 +16,7 @@ function Game()
   const {
     gameState,
     gameID,
+    setGameID,
     addGeneration,
     addProductionToValue,
     addResourceValue,
@@ -48,12 +49,12 @@ function Game()
 
       resources.forEach((resource) =>
       {
-        if (resource === "Electricity")
+        if (resource === "Energy")
         {
-          const ElectricityValue = player.resources.Electricity.value;
+          const EnergyValue = player.resources.Energy.value;
 
-          addResourceValue(name, "Heat", ElectricityValue);
-          subtractResourceValue(name, "Electricity", ElectricityValue);
+          addResourceValue(name, "Heat", EnergyValue);
+          subtractResourceValue(name, "Energy", EnergyValue);
         }
 
         if (resource === "Terraformation level")
@@ -87,6 +88,11 @@ function Game()
     };
   }, []);
 
+  useEffect(() =>
+  {
+    if (localStorage.getItem("gameState") !== null) setGameState(JSON.parse(localStorage.getItem("gameState")));
+    if (localStorage.getItem("gameID") !== null) setGameID(JSON.parse(localStorage.getItem("gameID")));
+  }, []);
   return (
 
     <div className="game-container">

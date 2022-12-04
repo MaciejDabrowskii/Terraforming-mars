@@ -9,7 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 
 function PlayerPage({ player })
 {
-  const { gameID, gameState, setGameState } = GlobalStatesMethods();
+  const {
+    gameID, gameState, setGameState, setGameID,
+  } = GlobalStatesMethods();
 
   const { generation } = gameState;
 
@@ -32,6 +34,9 @@ function PlayerPage({ player })
   useEffect(() =>
   {
     const unsubscribe = onSnapshot(doc(database, "TerraformingMars", gameID), (data) => setGameState(data.data()));
+
+    if (localStorage.getItem("gameState") !== null) setGameState(JSON.parse(localStorage.getItem("gameState")));
+    if (localStorage.getItem("gameID") !== null) setGameID(JSON.parse(localStorage.getItem("gameID")));
 
     return () =>
     {
