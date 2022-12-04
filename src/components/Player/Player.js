@@ -19,7 +19,7 @@ function Player({ player })
       </div>
       <div className="resources">
         {resourcesKeys.map((resource) => (
-          resource !== "Terraformation level"
+          resource !== "Terraform rating"
             ? (
               <form className="player-resource" key={resources[resource].index}>
                 <fieldset className="player-resource-fieldset">

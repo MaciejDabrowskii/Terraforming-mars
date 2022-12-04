@@ -57,9 +57,9 @@ function Game()
           subtractResourceValue(name, "Energy", EnergyValue);
         }
 
-        if (resource === "Terraformation level")
+        if (resource === "Terraform rating")
         {
-          const terraformationLevelValue = player.resources["Terraformation level"].value;
+          const terraformationLevelValue = player.resources["Terraform rating"].value;
 
           addResourceValue(name, "Money", terraformationLevelValue);
         }

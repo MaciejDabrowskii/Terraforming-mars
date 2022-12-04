@@ -47,7 +47,7 @@ export function GlobalStateProvider({ children })
               Plants: { production: 0, value: 0, index: 4 },
               Energy: { production: 0, value: 0, index: 5 },
               Heat: { production: 0, value: 0, index: 6 },
-              "Terraformation level": { production: 0, value: 0, index: 7 },
+              "Terraform rating": { production: 0, value: 0, index: 7 },
             },
           },
         ],
