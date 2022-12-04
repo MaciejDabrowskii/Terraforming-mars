@@ -36,16 +36,18 @@
     font-size: 1.4rem;
 }
 
-.resource-value-btn-wrapper > button:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
-}
-
 .resource-value-btn-wrapper > button:first-child {
     border-right: 1px solid var(--white);
 }
 
 .resource-value-btn-wrapper > button:last-child {
     border-left: 1px solid var(--white);
+}
+
+@media (hover:hover ) {
+    .resource-value-btn-wrapper > button:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
 }

@@ -24,8 +24,10 @@
     margin-bottom: 2rem;
 }
 
-.end-Generation:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
+@media (hover:hover ) {
+    .end-Generation:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
 }

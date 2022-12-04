@@ -59,11 +59,7 @@
     border-top-left-radius: 0;
 }
 
-.player-form-submit:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
-}
+
 
 .players-header {
     text-align: center;
@@ -109,15 +105,25 @@
     transform: translate(-50%, -50%);
 }
 
-.players-list-btn:hover, .start-game-btn:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
-}
+
 
 .start-game-btn {
     width: 100%;
     cursor: pointer;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
+}
+
+@media (hover:hover ) {
+
+    .player-form-submit:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
+    .players-list-btn:hover, .start-game-btn:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
 }

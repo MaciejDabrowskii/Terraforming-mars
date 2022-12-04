@@ -22,12 +22,6 @@
     background-color: transparent;
 }
 
-.join-btn:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
-}
-
 .join-btn.visible {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
@@ -72,11 +66,7 @@
     border-top-left-radius: 0;
 }
 
-.join-form > button:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
-}
+
 
 .join-form > input {
     border-radius: 0;
@@ -85,3 +75,16 @@
     color: rgba(248, 249, 250, 0.664);
 }
 
+@media (hover:hover ) {
+    .join-form > button:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
+
+    .join-btn:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
+}

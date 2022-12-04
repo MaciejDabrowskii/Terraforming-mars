@@ -32,12 +32,6 @@
     font-size: 1.4rem;
 }
 
-.resource-production-btn-wrapper > button:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
-}
-
 .value {
     width: 100%;
     display: flex;
@@ -53,4 +47,12 @@
 
 .resource-production-btn-wrapper > button:last-child {
     border-left: 1px solid var(--white);
+}
+
+@media (hover:hover ) {
+    .resource-production-btn-wrapper > button:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
 }

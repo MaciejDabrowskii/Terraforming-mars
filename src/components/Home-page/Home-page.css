@@ -47,10 +47,12 @@
     width: 100%;
 }
 
-.new-game-link:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
+@media (hover:hover ) {
+    .new-game-link:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
 }
 
 @media (max-width: 480px) {

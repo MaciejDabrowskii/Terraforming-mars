@@ -25,9 +25,12 @@
     background-color: transparent;
     font-size: 2rem;
 }
-.generation-bar-btn:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
-    cursor: pointer;
+
+@media (hover:hover ) {
+    .generation-bar-btn:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+        cursor: pointer;
+    }
 }

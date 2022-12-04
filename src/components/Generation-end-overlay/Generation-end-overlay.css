@@ -43,8 +43,12 @@
     cursor: pointer;
 }
 
-.generation-overlay-btn:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
+
+
+@media (hover:hover ) {
+    .generation-overlay-btn:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
 }

@@ -30,8 +30,10 @@
     max-width: 320px;
 }
 
-.player-select-container > a:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
+@media (hover:hover ) {
+    .player-select-container > a:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
 }

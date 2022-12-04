@@ -18,12 +18,6 @@
     cursor: pointer;
 }
 
-.valueSelector-btn:hover {
-    color: #000;
-    background-color: var(--white);
-    border-color: var(--white);
-}
-
 .valueSelector-btn.selected {
     background-color: var(--orange);
 }
@@ -34,4 +28,12 @@
 
 .valueSelector-btn:last-child {
     border-left: 1px solid var(--white);
+}
+
+@media (hover:hover ) {
+    .valueSelector-btn:hover {
+        color: #000;
+        background-color: var(--white);
+        border-color: var(--white);
+    }
 }
