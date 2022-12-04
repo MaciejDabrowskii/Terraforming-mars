@@ -31,11 +31,11 @@ function GenerationBar({
 
       {displayGenerationIndicator
       && (
-      <div className="generation-indicator">
-        Generation:
-        {" "}
-        {generation}
-      </div>
+        <div className="generation-indicator">
+          Generation:
+          {" "}
+          {generation}
+        </div>
       )}
     </div>
   );
